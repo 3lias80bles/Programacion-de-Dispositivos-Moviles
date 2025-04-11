@@ -21,8 +21,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           useMaterial3: true, // Habilita Material 3
           colorScheme: ColorScheme.fromSeed(
-              seedColor: const Color.fromARGB(
-                  255, 34, 86, 255)), // Define el esquema de colores
+              seedColor:Colors.blue), // Define el esquema de colores
         ),
         home: MyHomePage(), // Página de inicio
       ),
@@ -86,7 +85,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 destinations: [
                   NavigationRailDestination(
                     icon: Icon(Icons.home),
-                    label: Text('Home'),
+                    label: Text('Inicio'),
                   ),
                   NavigationRailDestination(
                     icon: Icon(Icons.favorite),
@@ -142,17 +141,25 @@ class PaginaPrincipal extends StatelessWidget {
                   appState.toggleFavorite();// Agrega o quita la palabra de favoritos
                 },
                 icon: Icon(icon),
-                label: Text('Like'),
+                label: Text('Me gusta'),
               ),
               SizedBox(width: 10),
               ElevatedButton(
                 onPressed: () {
                   appState.getNext();// Obtiene una nueva palabra aleatoria
                 },
-                child: Text('Next'),
+                child: Text('Siguiente'),
               ),
             ],
           ),
+          //Se pone afuera del children porque al pinerlo con los demas no alcanza el espacio
+          ElevatedButton(
+                onPressed: () {
+                  print("Botón presionado");
+              
+                },
+                child: Text('Imprimir a consola'),
+              ),
         ],
       ),
     );
@@ -174,7 +181,7 @@ class PaginaFavoritos extends StatelessWidget {
     return ListView(
       children: [
         Padding(
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.all(50),
           child: Text('Tu tienes '// Mensaje si no hay favoritos
               '${appState.favorites.length} favoritos:'),
         ),
@@ -205,9 +212,9 @@ class BigCard extends StatelessWidget {
       color: theme.colorScheme.onSecondary,
     );
     return Card(
-      color: theme.colorScheme.primary,// Color de la tarjeta
+      color: theme.colorScheme.secondary,// Color de la tarjeta
       child: Padding(
-        padding: const EdgeInsets.all(20),
+        padding: const EdgeInsets.all(50),
         child: Text(
           pair.asLowerCase,// Muestra la palabra en minúsculas
           style: style,
