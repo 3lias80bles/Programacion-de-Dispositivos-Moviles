@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:quizz_app/main.dart';
 import 'package:quizz_app/question.dart';
 
 class ResultsScreen extends StatelessWidget {
   const ResultsScreen({super.key, required this.selectedAnswers});
   final List<String>selectedAnswers;
-}
-@override
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
@@ -38,3 +36,4 @@ class ResultsScreen extends StatelessWidget {
         ),
     );
   }
+}
