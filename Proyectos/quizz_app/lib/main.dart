@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quizz_app/question.dart';
 import 'package:quizz_app/quiz_body.dart';
+import 'package:quizz_app/results_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -34,11 +35,11 @@ class _MyAppState extends State<MyApp> {
 
   void addSelectedAnswers(String answer){
     selectedAnswers.add(answer);
-    print(selectedAnswers);
+    //print(selectedAnswers);
 
     if(selectedAnswers.length == listQuestions.length){
       setState(() {
-        currentScreen="home-screen";
+        currentScreen="results-screen";
       });
     }
   }
@@ -48,6 +49,9 @@ class _MyAppState extends State<MyApp> {
     Widget screen = HomePage(startQuiz: switchScreen);
     if(currentScreen == "question-screen"){
       screen = QuizBody(addSelectedAnswers: addSelectedAnswers);
+    }
+    if(currentScreen == "results-screen" ){
+      screen  = ResultsScreen( selectedAnswers: selectedAnswers);
     }
     return MaterialApp(
       title: 'quizz',
