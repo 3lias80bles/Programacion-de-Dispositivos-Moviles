@@ -75,6 +75,7 @@ class _HomeFotoState extends State<HomeFoto> {
     }
   }
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
