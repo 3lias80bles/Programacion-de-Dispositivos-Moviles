@@ -1,21 +1,23 @@
 //Sergio Elias Robles Ignacio 603
 import 'package:flutter/material.dart';
 import 'dart:math';
-import 'dart:async';
 
 void main() {
+  //Inicio de la aplicación
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  // clase principal extiende de StatelessWidget porque no cambia su estado
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: HomeFoto());
+    return MaterialApp(home: HomeFoto()); //retorna la pantalla principal
   }
 }
 
+//HomeFoto es la clase que extiende de StatefulWidget y representa la pantalla principal se encarga de mostrar la imagen y el botón
 class HomeFoto extends StatefulWidget {
   const HomeFoto({super.key});
   @override
@@ -33,13 +35,25 @@ class HomeFoto extends StatefulWidget {
 class _HomeFotoState extends State<HomeFoto> {
   //bool mostrarMensajeGanador = false;
   String _rutaFoto = "assets/images/compa_1.jpeg";
+  String _ganador = ""; //variable para guardar el nombre del ganador
   var _i = 1;
   var _estaAnimado = false;
+  final List<String> _nombresAlumnos = [
+    'Albert',
+    'Kevin',
+    'Elton',
+    'Diana',
+    'Eden',
+    'Amelia',
+    'Sergio',
+  ];
+
   Future<void> girarFoto() async {
     //print("Bandera $_estaAnimado");
     if (!_estaAnimado) {
       _estaAnimado = true;
       List<String> listaFotos = [
+        //Lista de imágenes de las fotos de mis amigos
         "assets/images/compa_1.jpeg",
         "assets/images/compa_3.jpeg",
         "assets/images/compa_5.jpeg",
@@ -53,11 +67,14 @@ class _HomeFotoState extends State<HomeFoto> {
         "assets/images/compa_2.jpeg",
         "assets/images/compa_2.jpeg",
       ];
-      var duracion = Duration(milliseconds: 200);
+
+      var duracion = Duration(milliseconds: 200); //tiempo de la animacion
       for (var foto in listaFotos) {
+        //recorre la lista de fotos
         setState(() {
           _i = Random().nextInt(6) + 1;
           _rutaFoto = foto;
+          _ganador = _nombresAlumnos[_i - 1];
         });
         await Future.delayed(duracion);
       }
@@ -75,7 +92,7 @@ class _HomeFotoState extends State<HomeFoto> {
     }
   }
 
-
+  //La vista de la pantalla principal
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -89,11 +106,25 @@ class _HomeFotoState extends State<HomeFoto> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Text("Ganador", style: TextStyle(fontSize: 40)),
+            SizedBox(height: 30), //margen de la parte de abajo
             Center(
               child: Column(
                 children: [
                   Image.asset(_rutaFoto, width: 250),
                   SizedBox(height: 30), //margen de la parte de abajo
+                  Text(
+                    _ganador.isEmpty
+                        ? 'Presiona el botón para sortear'
+                        : 'Ganador: $_ganador',
+                    style: TextStyle(
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.blueGrey,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  SizedBox(height: 30), // Espacio debajo del texto del ganador
                   TextButton(
                     onPressed: girarFoto,
                     style: TextButton.styleFrom(

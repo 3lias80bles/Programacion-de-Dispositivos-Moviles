@@ -67,6 +67,8 @@ flutter:
         - assets/images/compa_6.jpeg
         - assets/images/compa_7.jpeg
         - assets/images/quiz.jpg
+        - assets/images/quiz.png
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

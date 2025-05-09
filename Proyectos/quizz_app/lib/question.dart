@@ -1,17 +1,34 @@
+//Este archivo contiene la clase Question, que representa una pregunta y sus respuestas posibles.
 class Question {
   const Question({required this.textQuestion, required this.answers});
   final String textQuestion;
-  final List<String>answers;
-  List<String> shuffleAnswers(){
+  final List<String> answers;
+  List<String> shuffleAnswers() {
     final copyOfList = List.of(answers);
     copyOfList.shuffle();
-    return copyOfList;
+    return copyOfList; //Esta función devuelve una lista de respuestas aleatorias
   }
+}
 
-  }
-final listQuestions=[
-    Question(textQuestion: "¿Cómo estas?", answers: ["Bien","Mal","Feliz","Masomenos"]),
-    Question(textQuestion: "¿Cúal es tu clase favorita?", answers: ["Ing.Soft","Redes","Programación"]),
-    Question(textQuestion: "¿Qué quieres comer?", answers: ["Maruchan","Ensalada"]),
-    Question(textQuestion: "¿Te gusta el maicra?", answers: ["si","no","Masomenos"]),
-    ];
+//Esta lista contiene las preguntas y respuestas posibles.
+final listQuestions = [
+  Question(
+    textQuestion:
+        "¿Qué componente es considerado el 'cerebro' de la computadora?",
+    answers: ["CPU", "Monitor", "Teclado", "Mouse"],
+  ),
+  Question(
+    textQuestion:
+        "¿Qué dispositivo se usa para escribir texto en la computadora?",
+    answers: ["Teclado", "Mouse", "Monitor", "Impresora"],
+  ),
+  Question(
+    textQuestion: "¿Cómo se llama la memoria temporal de la computadora?",
+    answers: ["RAM", "Disco duro", "USB", "CD-ROM"],
+  ),
+  Question(
+    textQuestion:
+        "¿Qué dispositivo muestra imágenes y texto en la computadora?",
+    answers: ["Monitor", "CPU", "Teclado", "Router"],
+  ),
+];
